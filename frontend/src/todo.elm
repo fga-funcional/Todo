@@ -4,6 +4,7 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Json.Decode exposing (decodeString, list, string)
 
 
 main =
@@ -24,7 +25,7 @@ type alias Model =
 
 init : Model
 init =
-    { todos = [], current = "" }
+    { todos = decodeString(list string) """["first","second","third"]""" |> Result.withDefault [], current = "" }
 
 
 
