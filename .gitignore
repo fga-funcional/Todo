@@ -1,4 +1,12 @@
 # elm-package generated files
-elm-stuff
+frontend/elm-stuff
 # elm-repl generated files
-repl-temp-*
+frontend/repl-temp-*
+*.hi
+*.o
+backend/.stack-work/
+backend/.cabal-sandbox
+backend/cabal.sandbox.config
+backend/.DS_Store
+*.swp
+*.keter
