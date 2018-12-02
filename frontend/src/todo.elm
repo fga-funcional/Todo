@@ -5,6 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode exposing (decodeString, list, string)
+import Http
 
 
 main =
@@ -25,8 +26,7 @@ type alias Model =
 
 init : Model
 init =
-    { todos = decodeString(list string) """["first","second","third"]""" |> Result.withDefault [], current = "" }
-
+      { todos = listDecoder """["first", "second", "third"]""", current = "" }
 
 
 -- MESSAGES ----------------------------------------------
@@ -36,7 +36,7 @@ type Msg
     = Clear
     | Add
     | Current String
-
+    | GotTasks (Result Http.Error (List String))
 
 update : Msg -> Model -> Model
 update msg m =
@@ -54,8 +54,10 @@ update msg m =
         Current st ->
             { m | current = st }
 
-
-
+        GotTasks result ->
+            { todos = result
+            , current = ""
+            }
 -- VIEW --------------------------------------------------
 
 
@@ -67,6 +69,7 @@ view m =
         , inputElem m
         , button [ onClick Add ] [ text "Add" ]
         , button [ onClick Clear ] [ text "Clear" ]
+        , button [ onClick GotTasks ] [ text "GotTasks" ]
         ]
 
 
@@ -85,3 +88,16 @@ inputElem m =
         , value m.current
         ]
         []
+
+-- Http Requests --------------------------------------------------
+
+getTasks : Cmd Msg
+getTasks =
+  Http.get
+    { url = "http://localhost:3000/tasks/2018-01-01"
+    , expect = Http.expectJson GotTasks (list string)
+    }
+
+listDecoder : String -> List String
+listDecoder result =
+  decodeString(list string) result |> Result.withDefault []
