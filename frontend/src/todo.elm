@@ -6,6 +6,10 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode exposing (decodeString, list, string)
 import Http
+import Bootstrap.CDN as CDN
+import Bootstrap.Grid as Grid
+import Bootstrap.Button as Button
+import Bootstrap.Navbar as Navbar
 
 
 main =
@@ -36,7 +40,7 @@ type Msg
     = Clear
     | Add
     | Current String
-    | GotTasks (Result Http.Error (List String))
+    -- | GotTasks (Result Http.Error (List String))
 
 update : Msg -> Model -> Model
 update msg m =
@@ -54,10 +58,10 @@ update msg m =
         Current st ->
             { m | current = st }
 
-        GotTasks result ->
-            { todos = result
-            , current = ""
-            }
+        -- GotTasks result ->
+        --     { todos = result
+        --     , current = ""
+        --     }
 -- VIEW --------------------------------------------------
 
 
@@ -69,7 +73,7 @@ view m =
         , inputElem m
         , button [ onClick Add ] [ text "Add" ]
         , button [ onClick Clear ] [ text "Clear" ]
-        , button [ onClick GotTasks ] [ text "GotTasks" ]
+        -- , button [ onClick GotTasks ] [ text "GotTasks" ]
         ]
 
 
@@ -91,13 +95,13 @@ inputElem m =
 
 -- Http Requests --------------------------------------------------
 
-getTasks : Cmd Msg
-getTasks =
-  Http.get
-    { url = "http://localhost:3000/tasks/2018-01-01"
-    , expect = Http.expectJson GotTasks (list string)
-    }
-
+-- getTasks : Cmd Msg
+-- getTasks =
+--   Http.get
+--     { url = "http://localhost:3000/tasks/2018-01-01"
+--     , expect = Http.expectJson GotTasks (list string)
+--     }
+--
 listDecoder : String -> List String
 listDecoder result =
   decodeString(list string) result |> Result.withDefault []
