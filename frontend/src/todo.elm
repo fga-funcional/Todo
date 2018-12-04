@@ -1,4 +1,4 @@
-module App exposing (init, main, update, view)
+module App exposing (init, main, update, viewTasks)
 
 import Browser
 import Html exposing (..)
@@ -13,25 +13,21 @@ import Bootstrap.Navbar as Navbar
 
 
 main =
-    Browser.sandbox
-        { view = view
+    Browser.element
+        { view = viewTasks
         , update = update
         , init = init
+        , subscriptions = subscriptions
         }
 
-
-
 -- MODEL --------------------------------------------------
-
 
 type alias Model =
     { todos : List String, current : String }
 
 
-init : Model
-init =
-      { todos = listDecoder """["first", "second", "third"]""", current = "" }
-
+init : () -> (Model, Cmd Msg)
+init = update GetTasks
 
 -- MESSAGES ----------------------------------------------
 
@@ -40,40 +36,44 @@ type Msg
     = Clear
     | Add
     | Current String
-    -- | GotTasks (Result Http.Error (List String))
+    | GotTasks (Result Http.Error List String)
+    | GetTasks
+    | NoOp
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> (Model, Cmd Msg)
 update msg m =
     case msg of
+        NoOp ->
+          (m, Cmd.none )
+        GetTasks ->
+          ( m, Http.send GotTasks getTasks )
         Clear ->
-            { todos = []
-            , current = ""
-            }
+            (m, Cmd.none )
 
         Add ->
-            { todos = m.current :: m.todos
-            , current = ""
-            }
+            (m, Cmd.none )
 
         Current st ->
-            { m | current = st }
+            (m, Cmd.none )
 
-        -- GotTasks result ->
-        --     { todos = result
-        --     , current = ""
-        --     }
+        GotTasks result ->
+          case result of
+            Ok url ->
+              (m, Cmd.none )
+            Err _ ->
+              (m, Cmd.none )
+
 -- VIEW --------------------------------------------------
 
 
-view : Model -> Html Msg
-view m =
+viewTasks : Model -> Html Msg
+viewTasks m =
     div []
         [ h1 [] [ text "TODOS" ]
         , showTodos m.todos
         , inputElem m
         , button [ onClick Add ] [ text "Add" ]
         , button [ onClick Clear ] [ text "Clear" ]
-        -- , button [ onClick GotTasks ] [ text "GotTasks" ]
         ]
 
 
@@ -95,13 +95,21 @@ inputElem m =
 
 -- Http Requests --------------------------------------------------
 
--- getTasks : Cmd Msg
--- getTasks =
---   Http.get
---     { url = "http://localhost:3000/tasks/2018-01-01"
---     , expect = Http.expectJson GotTasks (list string)
---     }
---
-listDecoder : String -> List String
-listDecoder result =
-  decodeString(list string) result |> Result.withDefault []
+getTasks : Cmd Msg
+getTasks =
+  Http.get
+    { url = "http://localhost:3000/tasks/2018-01-01"
+    , expect = Http.expectJson GotTasks (list string)
+    }
+
+-- listDecoder : String -> List String
+-- listDecoder result =
+--   decodeString(list string) result |> Result.withDefault []
+
+
+-- SUBSCRIPTIONS --------------------------------------------------
+
+
+subscriptions : Model -> Sub Msg
+subscriptions m =
+  Sub.none
