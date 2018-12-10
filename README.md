@@ -1,16 +1,23 @@
-# Todo
-Elm Todo app
+# Elm Todo app
+
+## Try it
+https://fga-funcional.github.io/Todo/
+
+## Home
+![alt text](images/home.png)
+
+## TODO
+![alt text](images/todo.png)
+
 
 ## Integrantes
 Nome | Matrícula | GitHub
 -- | -- | --
 Nicácio Arruda Bezerra Neto | 13/0015857 | [Nicacioneto](https://github.com/Nicacioneto)
 
-# Try it
-https://fga-funcional.github.io/Todo/
 
-# Development Mode
-## Run the following commands to compiling Elm
+## Build Instructions
+### Run the following commands to compiling Elm
 ```cd frontend```
 
 ```elm make src/Main.elm --output ../elm.js```
