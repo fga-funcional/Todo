@@ -1,6 +1,5 @@
-module App exposing (init, main, update, view)
+module Main exposing (main)
 import Browser
-
 import Html exposing (Html, input, text, button, div, ul, li)
 import Html.Attributes exposing (disabled, placeholder, value, style)
 import Html.Events exposing (onClick, onInput)
