@@ -33,6 +33,7 @@
     Todas as rotas possuem validação para dias e tarefas. Infelizmente, não foi possível utilizar um banco de dados como mecanismo de persistência, então, os dados estão sendo armazenados em memória (variável global mutável), utilizando o mecanismo de persistência MVar.
 
   - ### Utilizou Recursos avançados da linguagem? (Elm ou Haskell)
+    Foram utilizadas Mônadas durante o desenvolvimento do backend para tratar operações com IO.
   - ### Rotas? Tasks e Subscribers em Elm?
   - ### Criou tipos Union types?
     Sim, foram criados, principalmente na função update e Msg
@@ -79,7 +80,7 @@
    - ### Implementa interações de forma eficiente?
      As interações com cliente foram implementadas de modo a facilitar a utilização do usuário.
    - ### Conseguiu polir a aplicação?
-     O FrontEnd da aplicação foi melhorado, utilizando materialize. Páginas HTML adicionais foram desenvolvidas para melhorar a apresentação do produto. O Código Elm foi integrado ao HTML;
+     O frontend da aplicação foi melhorado, utilizando materialize. Páginas HTML adicionais foram desenvolvidas para melhorar a apresentação do produto. O Javascript gerado foi integrado ao HTML;
    - ### Pronto para produção?
      O App já está em produção e pode ser acessado por meio do link https://fga-funcional.github.io/Todo/
 - ## Integração front + back   (2,5 pts)
@@ -92,7 +93,9 @@
 
 - ## Método (1,5 pts)
    - ### Possui sistema de build?
+     Para realizar o build do projeto, basta rodar o comando elm make ```src/Main.elm --output ../elm.js```. Já existe um arquivo HTML que realiza a importação do script, então, basta abrir esse arquivo com o browser de preferência. Tentou-se implementar um sistema de build com Docker porém, não obteve-se sucesso.
+   Sim, foi utilizado o comando elm make, que compila o código elm para Javascript para ser importado no arquivo index.html juntamente com o arquivo CSS. Tentamos utilizar o docker, mas por problemas com a versão dos nossos sistemas operacionais, não obtivemos êxito.
    - ### Testes unitários e boas práticas?
-     Não possui testes unitários, porém, boas práticas de programação foram aplicadas, como a modularização, onde se dividiu a aplicação em vários arquivos (Main, Models, Msgs, Views).
+     Este projeto não possui testes unitários, porém, boas práticas de programação foram aplicadas, como a modularização, onde se dividiu a aplicação em vários arquivos (Main, Models, Msgs, Views). Além disso, foram utilizados nomes significativos e atomicidade nas funções.
    - ### Implantou em algum lugar?
      O App foi implantando utilizando o github pages e pode ser acessado por meio do link https://fga-funcional.github.io/Todo/
