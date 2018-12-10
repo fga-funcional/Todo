@@ -1,9 +1,9 @@
-name:          mavins-lee
+name:          tasks-api
 version:       0.0.0
 cabal-version: >= 1.8
 build-type:    Simple
 
-executable          mavins-lee
+executable          tasks-api
     hs-source-dirs: .
     main-is:        Main.hs
     ghc-options:    -Wall -threaded -O2 -rtsopts -with-rtsopts=-N

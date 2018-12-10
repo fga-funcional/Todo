@@ -6,15 +6,17 @@ Nome | Matrícula | GitHub
 -- | -- | --
 Nicácio Arruda Bezerra Neto | 13/0015857 | [Nicacioneto](https://github.com/Nicacioneto)
 
-# Compiling Elm
+# Run the following commands to compiling Elm
 ```cd frontend```
 
 ```elm make src/todo.elm --output=elm.js```
 
-# Running Hasckell API
+Open index.html file in your browser
+
+# Run the following commands to execute the Haskell API
 
 ```cd backend```
 
 ```stack build```
 
-```stack exec -- mavins-lee```   
+```stack exec -- tasks-api```   

@@ -14,31 +14,25 @@ type Task = String
 
 allTasks :: M.Map Day [Task]
 allTasks = M.fromList
-    [ ("2018-01-01",
-        [ "Lavar a louça"
-        , "Pagar o contador"
-        , "Fazer compras"
+    [ ("2018-12-09",
+        [ "Finalizar TCC"
+        , "Falar com orientador"
+        , "Verificar Menções"
         , "Estudar Haskell"
-        , "Ligar para o cliente"
-        , "Ler um livro"
         ]
       )
-    , ("2018-01-02",
-        [ "Escrever um tutorial"
-        , "Ligar para o Vinícius"
-        , "Comprar um buquê"
-        , "Tirar férias"
-        , "Ir ao cinema"
-        , "Visitar parentes"
+    , ("2018-12-10",
+        [ "Desenvolver uma API"
+        , "Estudar Elm"
+        , "Integrar Backend e Frontend"
+        , "Estudar programação funcional"
         ]
       )
-    , ("2018-01-03",
-        [ "Ir a Igreja"
-        , "Abastecer o carro"
-        , "Varrer a casa"
-        , "Tomar banho"
-        , "Salvar o planeta"
-        , "Estudar Haskell"
+    , ("2018-12-12",
+        [ "Ir para faculdade"
+        , "Assinar lista de presença"
+        , "Ir na revisão de menções"
+        , "Passar na secretaria"
         ]
       )
     ]
