@@ -4,15 +4,15 @@
   - ### Algum mecanismo de persistência?
 
     Foi desenvolvido uma API REST para cadastro de tarefas, que possui as seguintes rotas:
+    OBS: Dia deve estar no formato YY-MM-DD
 
     #### Listar todas as tarefas.
     ```
     get "/tasks
     ```
-    #### Listar todas as tarefas de um determinado dia
+    #### Listar todas as tarefas de um determinado dia.
     ```
     get "/tasks/:day"
-    EX: GET /tasks/2018-12-11
     ```
 
     #### Cadastrar tarefas de um determinado dia
@@ -30,7 +30,7 @@
     delete "/tasks/:day"
     ```
 
-    Todas as rotas possuem validação para dias e tarefas. Infelizmente, não foi possível utilizar um mecanismo de persistência, então, os dados estão sendo armazenados em memória (variável global mutável).
+    Todas as rotas possuem validação para dias e tarefas. Infelizmente, não foi possível utilizar um banco de dados como mecanismo de persistência, então, os dados estão sendo armazenados em memória (variável global mutável), utilizando o mecanismo de persistência MVar.
 
   - ### Utilizou Recursos avançados da linguagem? (Elm ou Haskell)
   - ### Rotas? Tasks e Subscribers em Elm?
@@ -93,5 +93,6 @@
 - ## Método (1,5 pts)
    - ### Possui sistema de build?
    - ### Testes unitários e boas práticas?
+     Não possui testes unitários, porém, boas práticas de programação foram aplicadas, como a modularização, onde se dividiu a aplicação em vários arquivos (Main, Models, Msgs, Views).
    - ### Implantou em algum lugar?
      O App foi implantando utilizando o github pages e pode ser acessado por meio do link https://fga-funcional.github.io/Todo/

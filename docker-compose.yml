@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  tasks-api:
+    container_name: 'tasks-api'
+    build:
+      context: ./backend
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./backend/:/tasks_api/
+    ports:
+      - 3000:3000
+    command: /root/.local/bin/tasks-api
+
+  todo:
+    container_name: 'todo'
+    build:
+      context: ./frontend
+      dockerfile: ./docker/Dockerfile
+        - ./frontend/:/todo/
+    volumes:
+      - ./frontend/:/todo/
+    depends_on:
+        - tasks-api
+    ports:
+      - 8000:8000
