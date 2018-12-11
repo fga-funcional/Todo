@@ -36,7 +36,7 @@
     Foram utilizadas Mônadas durante o desenvolvimento do backend para tratar operações com IO.
   - ### Rotas? Tasks e Subscribers em Elm?
   - ### Criou tipos Union types?
-    Sim, foram criados, principalmente na função update e Msg
+    Sim, foram criados, principalmente na função update type Msg
     ```
     update msg m =
         case msg of
@@ -78,7 +78,7 @@
    - ### Ignorando a aparência, implementa recursos básicos esperados?
      Foram Implementados os recursos básicos de uma lista de tarefas, incluindo adicionar tarefas, limpar lista de tarefas e excluir tarefa (marcar como concluída);
    - ### Implementa interações de forma eficiente?
-     As interações com cliente foram implementadas de modo a facilitar a utilização do usuário.
+     As interações com cliente foram implementadas de modo a facilitar a utilização do usuário. Na página de tarefas, temos dois botões, um botão para adicionar tarefa e outro para limpar a lista de tarefas. Existe um campo para adicionar tarefas, bastando escrever o nome da tarefa e clicar no botão de adicionar. Para remover uma tarefa, basta clicar sobre a tarefa.
    - ### Conseguiu polir a aplicação?
      O frontend da aplicação foi melhorado, utilizando materialize. Páginas HTML adicionais foram desenvolvidas para melhorar a apresentação do produto. O Javascript gerado foi integrado ao HTML;
    - ### Pronto para produção?
@@ -93,7 +93,7 @@
 
 - ## Método (1,5 pts)
    - ### Possui sistema de build?
-     Para realizar o build do projeto, basta rodar o comando elm make ```src/Main.elm --output ../elm.js```. Já existe um arquivo HTML que realiza a importação do script, então, basta abrir esse arquivo com o browser de preferência. Tentou-se implementar um sistema de build com Docker porém, não obteve-se sucesso.
+     Para realizar o build do projeto, basta rodar o comando elm make ```src/Main.elm --output ../elm.js```. Já existe um arquivo HTML que realiza a importação do script, então, basta abrir esse arquivo com o browser de preferência. Tentou-se implementar um sistema de build com Docker para preparar todo o ambiente, instalando todas as dependências, porém, não obteve-se sucesso.
    - ### Testes unitários e boas práticas?
      Este projeto não possui testes unitários, porém, boas práticas de programação foram aplicadas, como a modularização, onde se dividiu a aplicação em vários arquivos (Main, Models, Msgs, Views). Além disso, foram utilizados nomes significativos, atomicidade nas funções e comentários documentando os métodos da API.
    - ### Implantou em algum lugar?
